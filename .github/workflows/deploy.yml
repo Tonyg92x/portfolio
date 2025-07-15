@@ -40,15 +40,15 @@ jobs:
           SERVICE_NAME=Portfolio-service-u5a2doxe
 
           echo "🔍 Getting current task ARN before deployment..."
-          OLD_TASK_ARN=$(aws ecs list-tasks --cluster "$CLUSTER" --service-name "$SERVICE" --desired-status RUNNING --query 'taskArns[0]' --output text)
+          OLD_TASK_ARN=$(aws ecs list-tasks --cluster "$CLUSTER_NAME" --service-name "$SERVICE_NAME" --desired-status RUNNING --query 'taskArns[0]' --output text)
           echo "Previous task ARN: $OLD_TASK_ARN"
 
           echo "🚀 Triggering ECS deployment..."
-          aws ecs update-service --cluster "$CLUSTER" --service "$SERVICE" --force-new-deployment
+          aws ecs update-service --cluster "$CLUSTER_NAME" --service "$SERVICE_NAME" --force-new-deployment
 
           echo "⏳ Waiting for new task to replace the old one..."
           for attempt in {1..30}; do
-            NEW_TASK_ARN=$(aws ecs list-tasks --cluster "$CLUSTER" --service-name "$SERVICE" --desired-status RUNNING --query 'taskArns[0]' --output text)
+            NEW_TASK_ARN=$(aws ecs list-tasks --cluster "$CLUSTER_NAME" --service-name "$SERVICE_NAME" --desired-status RUNNING --query 'taskArns[0]' --output text)
 
             if [[ "$NEW_TASK_ARN" != "$OLD_TASK_ARN" && "$NEW_TASK_ARN" != "None" && "$NEW_TASK_ARN" != "" ]]; then
               echo "✅ New task detected: $NEW_TASK_ARN"
@@ -65,7 +65,7 @@ jobs:
           fi
 
           echo "📡 Getting ENI and public IP for new task..."
-          ENI_ID=$(aws ecs describe-tasks --cluster "$CLUSTER" --tasks "$NEW_TASK_ARN" \
+          ENI_ID=$(aws ecs describe-tasks --cluster "$CLUSTER_NAME" --tasks "$NEW_TASK_ARN" \
             --query 'tasks[0].attachments[0].details[?name==`networkInterfaceId`].value' --output text)
 
           for i in {1..12}; do
