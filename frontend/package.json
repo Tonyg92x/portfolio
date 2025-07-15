@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "vite preview --host",
+    "start": "vite preview --host --port 80",
     "dev": "vite",
     "test": "npx jest",
     "build": "vite build",
