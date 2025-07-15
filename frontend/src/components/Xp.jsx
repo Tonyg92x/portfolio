@@ -46,7 +46,7 @@ const Xp = ({exp_en, exp_fr}) => {
                                 <p className='xp_text'>{exp_fr.start_year} - {exp_fr.end_year}</p>
                             </div>
                             <div className={`xp_body`}>
-                                <h5 className='xp_text'>{exp_fr.field}</h5>
+                                <h4 className='xp_text'>{exp_fr.field}</h4>
                                 <div className='xp_bullet_div'>
                                     {exp_fr.bullet_point.map((bullet_point, index) => (
                                         <p key={index} className='xp_text xp_bullet'>{bullet_point}</p>

@@ -87,7 +87,9 @@ const Skills = () => {
                                 </div>
                                 <div className={`skill_card bg-skin-secondary${theme} text-skin-secondary${theme}`}>
                                     <div className={`card_header`}>
-                                        <h2 >Administrateur Système</h2>
+                                        <h2>
+                                            Administrateur Système
+                                        </h2>
                                     </div>
                                     <div className={`card_body`}>
                                             {sysSkillsFr.map((progSkils, index) => (
