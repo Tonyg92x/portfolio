@@ -15,7 +15,7 @@ function Navbar() {
         <div>
             {
                 language === 'English' ? (
-                    <nav className={`nav bg-skin-secondary${theme} text-skin-secondary${theme}`}>
+                <nav className={`nav bg-skin-secondary${theme} text-skin-secondary${theme}`}>
                         <Link to='/' className={`site-title `}>
                             <h2>Anthony Guay</h2>
                         </Link>
@@ -38,8 +38,8 @@ function Navbar() {
                         }
                 </nav>
                 ) : (
-                    <nav className={`nav bg-skin-secondary${theme} text-skin-secondary${theme}`}>
-                        <Link to='/' className={`site-title bg-skin-third${theme} text-skin-third${theme}`}>
+                <nav className={`nav bg-skin-secondary${theme} text-skin-secondary${theme}`}>
+                        <Link to='/' className={`site-title`}>
                             <h2>Anthony Guay</h2>
                         </Link>
                         <ul className='nav-element-div'>
@@ -60,7 +60,6 @@ function Navbar() {
                 )
             }
         </div>
-
     );
 }
 

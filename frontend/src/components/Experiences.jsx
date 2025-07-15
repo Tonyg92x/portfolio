@@ -15,7 +15,7 @@ const Experience = () => {
     ];
 
     const work_xp_fr   = [
-        new Exp('CyberQuébec - Centre Collégial de Transfert des Technologies en Cyber Sécurité', 'Analyste spécialisé en informatique', 2023, 'Présent', ['Gestion complète d\'une solution infonuagique de type CyberRange', 'Consultation sur de l\'architecture logiciel sécuritaire', 'Architecture et maintient de l\'infrastructure du CyberRange', 'Protection de l\'environnement informatique', 'Développement de contenue dans le CyberRange', 'Développement d\'application web pour améliorer l\'expérience des utilisateurs', 'Support technique aux enseignants du CyberRange'], '/cq.png'),
+        new Exp('CyberQuébec - Centre Collégial de Transfert des Technologies en Cyber Sécurité', 'Analyste spécialisé en informatique', 2023, 'Présent', ['Gestion complète d\'une solution infonuagique de type CyberRange', 'Consultation sur de l\'architecture logiciel sécuritaire', 'Architecture et maintient de l\'infrastructure du CyberRange', 'Protection de l\'environnement CyberRange dans un contexte d\'apprentissage de piratage éthique', 'Développement de contenue dans le CyberRange', 'Développement d\'application web pour améliorer l\'expérience des utilisateurs', 'Support technique aux enseignants du CyberRange'], '/cq.png'),
         new Exp('Titans - Cégep de Limoilou', 'Football', 2023, 'Présent', ['Entraîneur de ligne défensive'], '/titans.png'),
         new Exp('Centaures - École secondaire de la Courvilloise', 'Football', 2023, '2024', ['Entraîneur de ligne défensive', 'Consultation sur les stratégies défensives', 'Don de temps à la communautée de Beauport'], '/centaures.jpeg'),
         new Exp('Korem', 'Administrateur Système - Sécurité opérationelle', 2023, 2023, ['Surveillance de l\'environnement', 'Gestion des vulnérabilités', 'Implémentation d\'outils'], '/korem.jpg')
@@ -44,9 +44,9 @@ const Experience = () => {
     const work_xp_en   = [
         new Exp('CyberQuébec - College Technology Transfer Center in Cybersecurity', 'Specialized IT Analyst', 2023, 'Present', [
             'Full management of a cloud-based CyberRange solution',
-            'Consulting on secure software architecture',
-            'Architecture and maintenance of the CyberRange infrastructure',
-            'Protection of the IT environment',
+            'Consultant on secure software architecture',
+            'Architecture and maintenance of a CyberRange infrastructure',
+            'Protection of an environment made for learning ethical hacking',
             'Content development within the CyberRange',
             'Web application development to enhance user experience',
             'Technical support for CyberRange instructors'
@@ -58,8 +58,8 @@ const Experience = () => {
         
         new Exp('Centaures - Courvilloise High School', 'Football', 2023, '2024', [
             'Defensive line coach',
-            'Consulting on defensive strategies',
-            'Volunteering in the Beauport community'
+            'Consultant on defensive strategies',
+            'Giving back to my community'
         ], '/centaures.jpeg'),
         
         new Exp('Korem', 'System Administrator - Operational Security', 2023, 2023, [
@@ -74,7 +74,7 @@ const Experience = () => {
             {
                 language === 'English' ? (
                     <div className={`section bg-skin-primary${theme} text-skin-primary${theme}`}>
-                            <h1>Experience</h1>
+                        <h1>Experience</h1>
                         <div className={`xp_container bg-skin-secondary${theme} text-skin-secondary${theme}`}>
                             <div className={`xp_container_title_div`}>
                                 <h2>Work experience</h2>

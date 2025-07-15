@@ -69,7 +69,7 @@ const Skills = () => {
                         </div>
                     </div>
                 ) : (
-                    <div className={`section bg-skin-primary${theme} text-skin-primary${theme}`}>
+                    <div className={`skill_div bg-skin-primary${theme} text-skin-primary${theme}`}>
                         <h1>Habileté</h1>
                         <div className={'skill_page'}>
                             <div className={'card_row'}>
