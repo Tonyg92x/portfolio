@@ -34,27 +34,40 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: 🚀 Deploy to AWS ECS
-        run: |
-          aws ecs update-service \
-            --cluster portfolio \
-            --service Portfolio-service-u5a2doxe \
-            --force-new-deployment
-
-      - name: Get ECS task public IP (with wait)
-        id: get-ip
+        id: get-new-task-ip
         run: |
           CLUSTER_NAME=portfolio
           SERVICE_NAME=Portfolio-service-u5a2doxe
 
-          TASK_ARNS=$(aws ecs list-tasks --cluster "$CLUSTER_NAME" --desired-status RUNNING --output text --query 'taskArns')
-          NEWEST_TASK=$(aws ecs describe-tasks --cluster "$CLUSTER_NAME" --tasks $TASK_ARNS --query 'tasks | sort_by(@, &startedAt) | [-1].taskArn' --output text)
+          echo "🔍 Getting current task ARN before deployment..."
+          OLD_TASK_ARN=$(aws ecs list-tasks --cluster "$CLUSTER" --service-name "$SERVICE" --desired-status RUNNING --query 'taskArns[0]' --output text)
+          echo "Previous task ARN: $OLD_TASK_ARN"
 
-          echo "⏳ Waiting for ECS task to start and attach a public IP..."
+          echo "🚀 Triggering ECS deployment..."
+          aws ecs update-service --cluster "$CLUSTER" --service "$SERVICE" --force-new-deployment
 
-          ENI_ID=$(aws ecs describe-tasks --cluster "$CLUSTER_NAME" --tasks "$NEWEST_TASK" \
+          echo "⏳ Waiting for new task to replace the old one..."
+          for attempt in {1..30}; do
+            NEW_TASK_ARN=$(aws ecs list-tasks --cluster "$CLUSTER" --service-name "$SERVICE" --desired-status RUNNING --query 'taskArns[0]' --output text)
+
+            if [[ "$NEW_TASK_ARN" != "$OLD_TASK_ARN" && "$NEW_TASK_ARN" != "None" && "$NEW_TASK_ARN" != "" ]]; then
+              echo "✅ New task detected: $NEW_TASK_ARN"
+              break
+            fi
+
+            echo "Still waiting for new task... (attempt $attempt)"
+            sleep 10
+          done
+
+          if [[ "$NEW_TASK_ARN" == "$OLD_TASK_ARN" || "$NEW_TASK_ARN" == "None" || "$NEW_TASK_ARN" == "" ]]; then
+            echo "❌ Timed out waiting for new task"
+            exit 1
+          fi
+
+          echo "📡 Getting ENI and public IP for new task..."
+          ENI_ID=$(aws ecs describe-tasks --cluster "$CLUSTER" --tasks "$NEW_TASK_ARN" \
             --query 'tasks[0].attachments[0].details[?name==`networkInterfaceId`].value' --output text)
 
-          # Wait up to 60s for IP
           for i in {1..12}; do
             PUBLIC_IP=$(aws ec2 describe-network-interfaces --network-interface-ids "$ENI_ID" \
               --query 'NetworkInterfaces[0].Association.PublicIp' --output text)
@@ -63,11 +76,11 @@ jobs:
               echo "PUBLIC_IP=$PUBLIC_IP" >> $GITHUB_ENV
               exit 0
             fi
-            echo "Waiting for public IP to be assigned..."
+            echo "Waiting for public IP assignment..."
             sleep 5
           done
 
-          echo "❌ Failed to get public IP"
+          echo "❌ Timed out waiting for public IP"
           exit 1
 
       - name: Update Cloudflare DNS
