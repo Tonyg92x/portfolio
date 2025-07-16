@@ -38,12 +38,12 @@ const Introduction = () => {
                             </div>
                             <div className={`content-container`}>
                                 <div className={`card_box bg-skin-secondary${theme} text-skin-secondary${theme}`}>
-                                    <p className='text-center'>Bienvenue sur mon site web portfolio. Ici, je décrit mes expériences et je présentes mes projets personnel en informatique.</p>
+                                    <p className='text-center'>Bienvenue sur mon portfolio. Vous y trouverez un aperçu de mes expériences et de mes projets personnels en informatique.</p>
                                     <h4 className='text-center'>Qui suis-je?</h4>
-                                    <p className='text-center'>Je suis quelqu'un de passionné et perfectionniste avec une profonde affection pour le football américain et les technologies. Mon parcours dans le football américain s'étend sur 15 ans, au cours desquels je me suis efforcé d'atteindre le niveau universitaire grâce à un travail acharné et à une grande détermination. Cette expérience m'a appris des leçons inestimables en matière de persévérance et d'engagement.</p>
-                                    <p className='text-center'>Ma fascination pour les technologies a commencé à l'âge de 5 ans. C'est le moment où j'ai commencé à jouer à des jeux vidéo sur PC. Cet intérêt précoce s'est transformé en une passion de toute une vie pour tout ce qui touche à la technologie. J'ai appliqué la même éthique de travail et la même dévotion qui ont alimenté ma carrière de football pour devenir compétent en informatique. Je fais de la programmation, de la cybersécurité, de l'administration système et du DevOps.</p>
-                                    <p className='text-center'>J'apporte un mélange unique de discipline et d'expertise technique à chaque projet que j'entreprends, en visant constamment l'excellence.</p>
-                                    <p className='text-center'> Si mes services vous intéresse, je vous invite à me rejoindre via la section Contact.</p>
+                                    <p className='text-center'>Je suis une personne passionnée et perfectionniste, avec une profonde affection pour le football américain et les technologies. Mon parcours dans le football s’étend sur 15 ans, au cours desquels j’ai travaillé sans relâche pour atteindre le niveau universitaire, grâce à ma détermination et à mon engagement. Cette expérience m’a inculqué des valeurs solides de persévérance et de discipline.</p>
+                                    <p className='text-center'>Ma fascination pour les technologies a commencé à l’âge de 5 ans, lorsque j’ai découvert les jeux vidéo sur PC. Ce premier contact a éveillé en moi une passion durable pour tout ce qui touche à l’informatique. J’ai ensuite appliqué la même rigueur que dans ma carrière sportive pour développer mes compétences en programmation, cybersécurité, administration système et DevOps.</p>
+                                    <p className='text-center'>J’apporte un mélange unique de discipline et d’expertise technique à chaque projet, en visant constamment l’excellence.</p>
+                                    <p className='text-center'>Si mes services vous intéressent, je vous invite à me contacter via la section <strong>Contact</strong>.</p>
                                 </div>
                             </div>
                         </div>
